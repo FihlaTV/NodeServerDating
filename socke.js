@@ -4,6 +4,7 @@ var io = require('socket.io')(http);
 var mysql      = require('mysql');
 var users={};
 var posts={};
+app.set('port', (process.env.PORT || 5000));
 
 var pool  = mysql.createPool({
   connectionLimit : 100,
@@ -149,5 +150,5 @@ io.of("/Message").on('connection',function(socket)
 });
 
 http.listen(app.get('port'), function(){
-  console.log('listening on *:3000');
+  console.log('listening on *: ',app.get('port'));
 });
