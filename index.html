@@ -32,7 +32,8 @@
               
             }
 
-      var socket = io('http://localhost:3000/Message');
+      // heroku caused change var socket = io('http://localhost:3000/Message');
+      var socket = io();
      
       
       $('form').submit(function(){
