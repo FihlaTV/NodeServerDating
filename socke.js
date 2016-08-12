@@ -7,7 +7,7 @@ var posts={};
 app.set('port', (process.env.PORT || 5000));
 
 var pool  = mysql.createPool({
-  connectionLimit : 100,
+  connectionLimit : 10,
   host            : 'localhost',
   user            : 'root',
   database        : 'Dating'
