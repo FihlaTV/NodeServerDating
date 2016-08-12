@@ -1,0 +1,103 @@
+
+Use Dating;
+
+CREATE TABLE Users
+(
+UserID int NOT NULL AUTO_INCREMENT,
+LastName varchar(255) NOT NULL,
+FirstName varchar(255),
+Email varchar(255),
+Password varchar(255),
+PRIMARY KEY (UserID)
+);
+
+CREATE TABLE Messages
+(
+MessageID int NOT NULL AUTO_INCREMENT,
+Sender int,
+Receiver int,
+Temporal DATETIME,
+PRIMARY KEY (MessageID),
+FOREIGN KEY (Sender) REFERENCES Users(UserID) ON DELETE CASCADE,
+FOREIGN KEY (Receiver) REFERENCES Users(UserID) ON DELETE CASCADE
+);
+
+CREATE TABLE Posts
+(
+PostID int NOT NULL AUTO_INCREMENT,
+Temporal DATETIME,
+Description varchar(255),
+UserID int,
+PRIMARY KEY (PostID),
+FOREIGN KEY (UserID) REFERENCES Users(UserID) ON DELETE CASCADE
+);
+
+
+CREATE TABLE Comments
+(
+CommentID int NOT NULL AUTO_INCREMENT,
+PostID int,
+Comment varchar(8000),
+UserID int,
+Temporal DateTime,
+PRIMARY KEY (CommentID),
+FOREIGN KEY (UserID) REFERENCES Users(UserID) ON DELETE CASCADE, 
+FOREIGN KEY (PostID) REFERENCES Posts(PostID) ON DELETE CASCADE
+);
+
+CREATE TABLE Likes
+(
+LikeID int NOT NULL AUTO_INCREMENT,
+PostID int,
+Temporal DateTime,
+UserID int,
+PRIMARY KEY (LikeID),
+FOREIGN KEY (UserID) REFERENCES Users(UserID) ON DELETE CASCADE, 
+FOREIGN KEY (PostID) REFERENCES Posts(PostID) ON DELETE CASCADE
+);
+
+CREATE TABLE Images
+(
+ImageID int NOT NULL AUTO_INCREMENT,
+PostID int,
+Path varchar(255),
+PRIMARY KEY (ImageID), 
+FOREIGN KEY (PostID) REFERENCES Posts(PostID) ON DELETE CASCADE
+);
+
+CREATE TABLE Videos
+(
+VideoID int NOT NULL AUTO_INCREMENT,
+PostID int,
+Path varchar(255),
+PRIMARY KEY (VideoID), 
+FOREIGN KEY (PostID) REFERENCES Posts(PostID) ON DELETE CASCADE
+);
+
+CREATE TABLE Relationships
+(
+RelationshipID int NOT NULL AUTO_INCREMENT,
+Sender int,
+Receiver int,
+Status int,
+Temporal DATETIME,
+PRIMARY KEY (RelationshipID), 
+FOREIGN KEY (Sender) REFERENCES Users(UserID) ON DELETE CASCADE,
+FOREIGN KEY (Receiver) REFERENCES Users(UserID) ON DELETE CASCADE
+);
+
+CREATE TABLE PushedPosts
+(
+PushID int NOT NULL AUTO_INCREMENT,
+Receiver int,
+PostID int,
+Temporal DATETIME,
+PRIMARY KEY (PushID),
+FOREIGN KEY (Receiver) REFERENCES Users(USERID) ON DELETE CASCADE,
+FOREIGN KEY (POSTID) REFERENCES Posts(PostID) ON DELETE CASCADE
+);
+
+
+
+
+

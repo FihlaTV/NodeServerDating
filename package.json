@@ -1,0 +1,17 @@
+{
+  "name": "snaplic_dating",
+  "version": "0.0.1",
+  "description": "A dating server that will revolutionize college social interaction",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jermaine Hewitt",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "1.15.2",
+    "express": "4.11.0",
+    "mysql": "2.11.1",
+    "socket.io": "^1.4.8"
+  }
+}
