@@ -1,6 +1,9 @@
 {
   "name": "snaplic_dating",
   "version": "0.0.1",
+  "engines": {
+    "node": "6.2.1"
+  },
   "description": "A dating server that will revolutionize college social interaction",
   "main": "index.js",
   "scripts": {
