@@ -4,7 +4,8 @@ var io = require('socket.io')(http);
 var mysql      = require('mysql');
 var users={};
 var posts={};
-app.set('port', (process.env.PORT || 5000));
+var fs=require('fs');
+//app.set('port', (process.env.PORT || 5000));
 
 var pool  = mysql.createPool({
   connectionLimit : 10,
@@ -19,10 +20,16 @@ app.get('/', function(req, res){
 
 io.on('connection', function(socket){
 	
-  socket.on('chat message', function(msg){
-  	console.log("server connected");
-    io.emit('chat message', msg);
-  });
+  socket.on('image', function(msg)
+  {
+  			console.log("image request");
+   			fs.readFile(__dirname + '/image.png', function(err, buf)
+    				{
+    					socket.emit('image',{'post':'new node maad','image':buf.toString('base64')});
+    				});
+
+   		});
+
 
 
 
@@ -149,6 +156,6 @@ io.of("/Message").on('connection',function(socket)
 
 });
 
-http.listen(app.get('port'), function(){
-  console.log('listening on *: ',app.get('port'));
+http.listen(3000, function(){
+  console.log('listening on *: ',3000);
 });
