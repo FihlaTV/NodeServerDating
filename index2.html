@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Socket.IO chat</title>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { font: 13px Helvetica, Arial; }
+      form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
+      form input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
+      form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
+      #messages { list-style-type: none; margin: 0; padding: 0; }
+      #messages li { padding: 5px 10px; }
+      #messages li:nth-child(odd) { background: #eee; }
+    </style>
+
+     <script>
+    function addImage()
+    {
+      console.log('body called me');
+      var oImg=document.createElement("img");
+      oImg.setAttribute('src', 'image.png');
+      oImg.setAttribute('alt', 'na');
+      oImg.setAttribute('height', '100');
+      oImg.setAttribute('width', '100');
+      document.body.appendChild(oImg));
+       $('#messages').append($('<li>').oImg);
+
+      
+    }
+    </script>
+  </head>
+  <body onload=func2()>
+    
+    <ul id="messages">
+      <li></li>
+    </ul>
+    <form action="">
+      <input id="m" autocomplete="off" /><button>Send</button>
+    </form>
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+    func2=function ()
+    {
+      console.log('body called me');
+      var oImg=document.createElement("img");
+      oImg.setAttribute('src', 'image.png');
+      oImg.setAttribute('alt', 'na');
+      oImg.setAttribute('height', '100');
+      oImg.setAttribute('width', '100');
+      document.body.appendChild(oImg);
+       $('#messages').append($('<li>').oImg);
+
+      
+    }
+   
+      var socket = io();
+      $('form').submit(function(){
+        socket.emit('chat message', $('#m').val());
+        $('#m').val('');
+        return false;
+      });
+      socket.on('chat message', function(msg){
+        //$('#messages').append($('<li>').text(msg));
+        var img = new Image();
+         img.src = 'data:image/jpeg;base64,' + msg.buffer;
+       $('#messages').append($('<li>').img
+      });
+    </script>
+  </body>
+</html>
